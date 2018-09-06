@@ -1,8 +1,7 @@
-import { Message } from './../message.model';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { Component, OnInit, Input, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Message } from '../message.model';
 
 @Component({
 	selector: 'app-chat',
@@ -22,7 +21,7 @@ export class ChatComponent implements OnInit {
 
 	ngOnInit() {
 		this.messages = this.msgRef.valueChanges();
-		this.messages.subscribe((res) => console.log(res));
+		this.scrollToBottom();
 	}
 
 	ngAfterViewChecked() {
